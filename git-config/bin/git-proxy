@@ -1,0 +1,19 @@
+#!/bin/bash
+
+PROXY=proxy.com
+PORT=1080
+
+case $1 in
+	# list internal git servers here that you do not want to use
+	# the proxy with, separated by a pipe character '|' as below:
+	#github.dominio|subdominio.dominio.com)
+github.dominio|subdominio.dominio.com)
+        METHOD=""
+        ;;
+*)
+        METHOD="--proxy-type socks5 --proxy ${PROXY}:${PORT}"
+        ;;
+esac
+
+/usr/bin/nc $METHOD $*
+
